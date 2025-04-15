@@ -1,0 +1,6 @@
+{
+  "Import react": {
+    "prefix": "imr",
+    "body": ["import React from 'react'"]
+  }
+}

@@ -1,3 +1,28 @@
 {
-  "extends": "@react-native/typescript-config/tsconfig.json"
+  "extends": "@react-native/typescript-config/tsconfig.json",
+  "compilerOptions": {
+    "target": "es6",
+    "module": "es2015",
+    "lib": ["es6", "ESNext"],
+    "allowJs": true,
+    "checkJs": true,
+    "jsx": "react",
+    "sourceMap": true,
+    "outDir": "dist",
+    "removeComments": true,
+    "strict": false,
+    "noImplicitReturns": false,
+    "noImplicitThis": true,
+    "baseUrl": "./src",
+    "strictNullChecks": true,
+    "paths": {
+      "src/*": ["."]
+    },
+    "allowSyntheticDefaultImports": true,
+    "noUnusedLocals": true,
+    "esModuleInterop": true,
+    "noImplicitAny": false,
+    "skipLibCheck": true
+  },
+  "exclude": ["node_modules", "coverage", "dist"]
 }
