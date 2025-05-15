@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, PressableProps, StyleSheet, Text, View } from 'react-native';
 
 const styles = StyleSheet.create({
   buttonStyles: {
@@ -15,15 +15,24 @@ const styles = StyleSheet.create({
     color: '#fff',
     display: 'flex',
     alignItems: 'center',
+    // fontFamily: 'Montserrat-Black',
     fontSize: 54,
     padding: 0
   }
 });
 
-export const Button: React.FC = () => (
-  <Pressable>
-    <View /* style={styles.buttonStyles} */>
-      <Text style={styles.buttonStyles}>Hello</Text>
-    </View>
-  </Pressable>
-);
+interface IButtonProps extends PressableProps {
+  children: React.ReactNode;
+}
+
+export const Button: React.FC<IButtonProps> = (props) => {
+  const { children } = props;
+
+  return (
+    <Pressable {...props}>
+      <View>
+        <Text style={styles.buttonStyles}>{children}</Text>
+      </View>
+    </Pressable>
+  );
+};
