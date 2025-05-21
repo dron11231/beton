@@ -1,63 +1,65 @@
-import React from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
-import { Button, DismissKeyboardView } from 'components';
+import React, { useState } from 'react';
+import { Link } from '@react-navigation/native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { StyleSheet } from 'react-native';
+import { Button, DismissKeyboardView, TextField } from 'components';
 
 const styles = StyleSheet.create({
-  mainContainer: {
-    backgroundColor: '#fff',
-    width: '100%',
-    height: '100%'
-  },
   container: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
+    gap: 15,
+    paddingTop: 100,
     height: '100%',
-    width: '100%'
+    width: '100%',
+    backgroundColor: '#fff'
   },
-
-  input: {
-    borderColor: '#000',
-    marginBottom: 15,
-    width: '95%',
-    borderWidth: 1
+  textField: {
+    width: '70%',
+    alignItems: 'center'
   },
-  test: {
-    // fontWeight: 'bold'
-    // fontFamily: 'Montserrat-Bold'
+  button: {
+    marginTop: 16
   }
 });
 
-export const AuthScreen: React.FC = () => {
-  const [text, setText] = React.useState('');
+export const AuthScreen: React.FC<NativeStackScreenProps<{ Registration: object }>> = () => {
+  const [phone, setPhone] = useState('');
+  const [password, setPassword] = useState('');
 
-  const handleChangeText = (value: string) => {
-    setText(value);
-  };
+  const handleChangePhone = (value: string) => setPhone(value);
 
-  const handleEndEditing = () => {
-    console.log('what is this?');
-  };
+  const handleChangePassword = (value: string) => setPassword(value);
 
   const handlePress = (event) => {
     console.log('213', event);
   };
 
   return (
-    <View style={styles.mainContainer}>
-      <View style={styles.container}>
-        <DismissKeyboardView style={styles.container}>
-          <Text style={styles.test}>Its Test</Text>
-          <TextInput
-            onEndEditing={handleEndEditing}
-            inputMode="text"
-            onChangeText={handleChangeText}
-            style={styles.input}
-            value={text}
-          />
-          <Button onPress={handlePress}>Привет</Button>
-        </DismissKeyboardView>
-      </View>
-    </View>
+    <DismissKeyboardView style={styles.container}>
+      <TextField
+        customStyles={styles.textField}
+        label="Номер телефона"
+        inputMode="tel"
+        textContentType="telephoneNumber"
+        onChangeText={handleChangePhone}
+        value={phone}
+      />
+      <TextField
+        customStyles={styles.textField}
+        label="Пароль"
+        inputMode="text"
+        secureTextEntry
+        textContentType="password"
+        onChangeText={handleChangePassword}
+        value={password}
+      />
+      <Button customStyles={styles.button} onPress={handlePress}>
+        Войти
+      </Button>
+      <Link screen="Registration" params={{ id: 'registration' }}>
+        Нет аккаунта? Зарегистрироваться
+      </Link>
+    </DismissKeyboardView>
   );
 };

@@ -1,42 +1,61 @@
 import React, { useState } from 'react';
-import { StyleSheet, TextInput, View } from 'react-native';
-import { DismissKeyboardView } from 'components';
+import { StyleSheet } from 'react-native';
+import { DismissKeyboardView, TextField } from 'components';
 
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
-    justifyContent: 'center',
     alignItems: 'center',
+    gap: 15,
+    paddingTop: 100,
+    height: '100%',
     width: '100%',
-    height: '100%'
+    backgroundColor: '#fff'
   },
 
-  input: {
-    borderColor: '#000',
-    marginBottom: 15,
-    width: '95%',
-    borderWidth: 1
+  textField: {
+    width: '70%',
+    alignItems: 'center'
   }
 });
 
 export const RegistrationScreen: React.FC = () => {
-  const [email, setEmail] = useState('');
-  console.log('123');
+  const [phone, setPhone] = useState('');
 
-  const handleChangeEmail = (value: string) => {
-    setEmail(value);
+  const handleChangePhone = (value: string) => {
+    setPhone(value);
   };
 
   return (
-    <View style={styles.container}>
-      <DismissKeyboardView style={styles.container}>
-        <TextInput
-          style={styles.input}
-          onChangeText={handleChangeEmail}
-          inputMode="email"
-          value={email}
-        />
-      </DismissKeyboardView>
-    </View>
+    <DismissKeyboardView style={styles.container}>
+      <TextField
+        mask={[
+          '+',
+          '7',
+          ' ',
+          '(',
+          /\d/,
+          /\d/,
+          /\d/,
+          ')',
+          ' ',
+          /\d/,
+          /\d/,
+          /\d/,
+          '-',
+          /\d/,
+          /\d/,
+          '-',
+          /\d/,
+          /\d/
+        ]}
+        customStyles={styles.textField}
+        onChangeText={handleChangePhone}
+        inputMode="tel"
+        placeholder="+7 (999) 999-99-99"
+        label="Номер телефона"
+        value={phone}
+      />
+    </DismissKeyboardView>
   );
 };

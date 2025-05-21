@@ -68,6 +68,7 @@
         }
       }
     ],
+
     "@typescript-eslint/ban-ts-comment": "off",
     "@typescript-eslint/restrict-plus-operands": "off",
     "@typescript-eslint/restrict-template-expressions": "off",
@@ -154,6 +155,13 @@
     // Фиксы из официальной документации
     "jsx-a11y/label-has-associated-control": ["off"],
     "jsx-a11y/label-has-for": ["off"],
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        "components": ["Link"],
+        "specialLink": ["screen"]
+      }
+    ],
     "no-useless-constructor": "off",
     "@typescript-eslint/no-useless-constructor": ["error"],
     "no-shadow": "off",

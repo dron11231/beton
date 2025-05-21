@@ -6,9 +6,9 @@ const Stack = createNativeStackNavigator();
 
 export const Main: React.FC = () => (
   <Stack.Navigator>
-    <Stack.Screen name="auth" component={AuthScreen} options={{ title: 'Авторизация' }} />
+    <Stack.Screen name="Auth" component={AuthScreen} options={{ title: 'Авторизация' }} />
     <Stack.Screen
-      name="registration"
+      name="Registration"
       component={RegistrationScreen}
       options={{ title: 'Регистрация' }}
     />
