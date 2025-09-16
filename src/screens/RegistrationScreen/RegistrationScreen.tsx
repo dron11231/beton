@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { StyleSheet } from 'react-native';
 import { DismissKeyboardView, TextField } from 'components';
 
@@ -25,6 +26,10 @@ export const RegistrationScreen: React.FC = () => {
   const handleChangePhone = (value: string) => {
     setPhone(value);
   };
+
+  useEffect(() => {
+    axios.get('https://jsonplaceholder.typicode.com/posts');
+  }, []);
 
   return (
     <DismissKeyboardView style={styles.container}>

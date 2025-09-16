@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleProp, StyleSheet, Text, TextInputProps, View, ViewStyle } from 'react-native';
 import MaskInput, { Mask } from 'react-native-mask-input';
-import { fontStyles, pallete } from 'styles';
+import { fontStyles, pallete } from 'assets/styles';
 
 interface ITextFieldProps extends TextInputProps {
   label?: string;

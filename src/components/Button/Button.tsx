@@ -8,7 +8,7 @@ import {
   View,
   ViewStyle
 } from 'react-native';
-import { fontStyles } from 'styles';
+import { fontStyles } from 'assets/styles';
 
 const styles = StyleSheet.create({
   buttonStyles: {

@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { Link } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Button, DismissKeyboardView, TextField } from 'components';
 
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
     alignItems: 'center',
-    gap: 15,
+    gap: 20,
     paddingTop: 100,
     height: '100%',
     width: '100%',
@@ -18,18 +18,17 @@ const styles = StyleSheet.create({
     width: '70%',
     alignItems: 'center'
   },
-  button: {
-    marginTop: 16
+  buttonsContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 10
   }
 });
 
 export const AuthScreen: React.FC<NativeStackScreenProps<{ Registration: object }>> = () => {
   const [phone, setPhone] = useState('');
-  const [password, setPassword] = useState('');
 
   const handleChangePhone = (value: string) => setPhone(value);
-
-  const handleChangePassword = (value: string) => setPassword(value);
 
   const handlePress = (event) => {
     console.log('213', event);
@@ -38,28 +37,39 @@ export const AuthScreen: React.FC<NativeStackScreenProps<{ Registration: object 
   return (
     <DismissKeyboardView style={styles.container}>
       <TextField
+        mask={[
+          '+',
+          '7',
+          ' ',
+          '(',
+          /\d/,
+          /\d/,
+          /\d/,
+          ')',
+          ' ',
+          /\d/,
+          /\d/,
+          /\d/,
+          '-',
+          /\d/,
+          /\d/,
+          '-',
+          /\d/,
+          /\d/
+        ]}
         customStyles={styles.textField}
-        label="Номер телефона"
-        inputMode="tel"
-        textContentType="telephoneNumber"
         onChangeText={handleChangePhone}
+        inputMode="tel"
+        placeholder="+7 (999) 999-99-99"
+        label="Номер телефона"
         value={phone}
       />
-      <TextField
-        customStyles={styles.textField}
-        label="Пароль"
-        inputMode="text"
-        secureTextEntry
-        textContentType="password"
-        onChangeText={handleChangePassword}
-        value={password}
-      />
-      <Button customStyles={styles.button} onPress={handlePress}>
-        Войти
-      </Button>
-      <Link screen="Registration" params={{ id: 'registration' }}>
-        Нет аккаунта? Зарегистрироваться
-      </Link>
+      <View style={styles.buttonsContainer}>
+        <Button onPress={handlePress}>Получить код</Button>
+        <Link screen="Registration" params={{ id: 'registration' }}>
+          Нет аккаунта? Зарегистрироваться
+        </Link>
+      </View>
     </DismissKeyboardView>
   );
 };
